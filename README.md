@@ -28,6 +28,11 @@
 
 `yarn add http-proxy-middleware `
 
+# 对webpack的额外配置
+`yarn add react-app-rewired customize-cra babel-plugin-import`
 
 # eject
 yarn eject 是将webpack配置项报漏出来  要保证你的项目提交到版本库
+
+# 装饰器所需要的依赖
+`yarn add @babel/plugin-proposal-decorators @babel/plugin-syntax-jsx`
