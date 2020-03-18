@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Form, Input, Button, Upload, message,Switch,Checkbox} from "antd"
+import { Modal, Form, Input, Button, Upload, message, Switch, Checkbox } from "antd"
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
 //将上传的图片转化成base64的方式   ===> 参考 node socket.io聊天室
@@ -33,9 +33,8 @@ class ModalContainer extends Component {
         super(props)
         this.state = {
             imageUrl: "",
-            loading:false,
-            plainOptions:["玄幻","修仙","动作","爱情","都市","校园","黑道","穿越"],
-            
+            loading: false,
+            plainOptions: ["玄幻", "修仙", "动作", "爱情", "都市", "校园", "黑道", "穿越"],
         }
     }
     render() {
@@ -48,9 +47,9 @@ class ModalContainer extends Component {
                 <div className="ant-upload-text">Upload</div>
             </div>
         );
-        let {modifyData} = this.props;
+        let { modifyData } = this.props;
         this.state.imageUrl = this.props.modifyData.booksImage;
-        const { imageUrl,plainOptions} = this.state;
+        const { imageUrl, plainOptions } = this.state;
         return (
             <Modal
                 title="修改书籍信息"
@@ -69,34 +68,36 @@ class ModalContainer extends Component {
                         label="书籍名称"
                         // name是不做双数据绑定的 name配合defaultValue  value配合onchange
                         name="booksName"
-                    >   
+                    >
                         {/* defaultValue单纯的赋值不做修改(没有做双数据绑定)  value是做修改的(双数据绑定的) */}
-                        <Input type="text" defaultValue={modifyData.booksName}/>
+                        <Input type="text" defaultValue={modifyData.booksName} />
                         {/* <Input type="text" value={modifyData.booksName} onChange={this.handleBooksChange.bind(this)}/> */}
                     </Form.Item>
+
                     <Form.Item
                         label="书籍作者"
                         name="authName"
                     >
-                        <Input type="text" defaultValue={modifyData.authName}/>
+                        <Input type="text" defaultValue={modifyData.authName} />
                     </Form.Item>
+
                     <Form.Item
                         label="书籍详情"
                         name="booksDes"
                     >
-                        <Input type="text" defaultValue={modifyData.booksDes}/>
+                        <Input type="text" defaultValue={modifyData.booksDes} />
                     </Form.Item>
                     <Form.Item
                         label="是否付费"
                         name="isPay"
                     >
-                        <Switch checkedChildren="付费" unCheckedChildren="免费" checked={modifyData.isPay}/>
+                        <Switch checkedChildren="付费" unCheckedChildren="免费" checked={modifyData.isPay} />
                     </Form.Item>
                     <Form.Item
                         label="类型"
                         name="tags"
                     >
-                        <Checkbox.Group options={plainOptions} defaultValue={modifyData.tags}/>
+                        <Checkbox.Group options={plainOptions} defaultValue={modifyData.tags} />
                     </Form.Item>
                     <Form.Item label="书籍封面">
                         <Upload
@@ -120,21 +121,21 @@ class ModalContainer extends Component {
         );
     }
     //更新提交
-    handleSubmit(values){
+    handleSubmit(values) {
         console.log(values);
         //轻提示  提示是否确认修改
         Modal.confirm({
-            content:"您确认要修改信息吗？",
-            cancelText:"取消",
-            okText:"修改",
-            onOk:()=>{
+            content: "您确认要修改信息吗？",
+            cancelText: "取消",
+            okText: "修改",
+            onOk: () => {
                 //做ajax
-                
-                 //然后在销毁对话框
-                 this.props.hideModel();
+
+                //然后在销毁对话框
+                this.props.hideModel();
             }
         })
-       
+
     }
     handleOk() {
         this.props.hideModel();
